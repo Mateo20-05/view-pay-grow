@@ -237,7 +237,7 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
                 {recentVideos.map((video) => (
                   <div key={video.id} className="group cursor-pointer">
                     <Card className="hover-lift transition-all">
-                      <div className="aspect-video relative overflow-hidden rounded-t-lg">
+                      <div className="aspect-[9/16] relative overflow-hidden rounded-t-lg">
                         <img
                           src={video.thumbnail}
                           alt={video.title}

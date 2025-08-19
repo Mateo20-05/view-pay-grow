@@ -173,7 +173,7 @@ export function MyVideosSection() {
             <DialogTrigger asChild>
               <Card className="group cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg">
                 <CardContent className="p-0">
-                  <div className="relative aspect-video">
+                  <div className="relative aspect-[9/16]">
                     <img
                       src={video.thumbnail}
                       alt={video.title}
