@@ -126,7 +126,7 @@ export function CampaignShowcase() {
                       <span className="font-semibold">{niche.campaigns}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Avg/view:</span>
+                      <span className="text-muted-foreground">Ppv:</span>
                       <span className="font-semibold text-primary">{niche.avgPayout}</span>
                     </div>
                   </div>
