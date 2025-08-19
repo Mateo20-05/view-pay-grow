@@ -86,6 +86,39 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
     { day: 7, earnings: 520 },
   ];
 
+  const recentVideos = [
+    {
+      id: 1,
+      title: "Summer Fashion Collection Review",
+      campaign: "StyleCo Campaign",
+      thumbnail: "/api/placeholder/80/60",
+      uploadDate: "2 days ago",
+      views: "45.2K",
+      earnings: "$890",
+      engagementRate: "8.5%",
+    },
+    {
+      id: 2,
+      title: "Fitness Equipment Unboxing",
+      campaign: "FitMax Campaign",
+      thumbnail: "/api/placeholder/80/60",
+      uploadDate: "4 days ago",
+      views: "32.1K",
+      earnings: "$650",
+      engagementRate: "7.2%",
+    },
+    {
+      id: 3,
+      title: "Tech Product First Look",
+      campaign: "TechCorp Campaign",
+      thumbnail: "/api/placeholder/80/60",
+      uploadDate: "1 week ago",
+      views: "28.9K",
+      earnings: "$580",
+      engagementRate: "9.1%",
+    },
+  ];
+
   const notifications = [
     { id: 1, text: "Proposal accepted for Tech Product Launch", time: "2h ago", type: "success" },
     { id: 2, text: "Campaign milestone reached: 100K views", time: "5h ago", type: "info" },
@@ -181,6 +214,55 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
                     <Upload className="h-4 w-4 mr-2" />
                     Upload
                   </Button>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          {/* Recent Videos Section */}
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle>Recent Videos</CardTitle>
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => onNavigate("myvideos")}
+                className="text-primary hover:text-primary"
+              >
+                View All <ArrowRight className="h-4 w-4 ml-1" />
+              </Button>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {recentVideos.map((video) => (
+                <div key={video.id} className="flex items-center gap-4 p-3 rounded-lg border hover-lift cursor-pointer">
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    className="w-16 h-12 rounded object-cover"
+                  />
+                  
+                  <div className="flex-1 space-y-1">
+                    <h4 className="font-medium text-sm">{video.title}</h4>
+                    <p className="text-xs text-muted-foreground">{video.campaign}</p>
+                    <p className="text-xs text-muted-foreground">{video.uploadDate}</p>
+                  </div>
+                  
+                  <div className="text-right space-y-1">
+                    <div className="flex items-center gap-3 text-xs">
+                      <span className="flex items-center gap-1">
+                        <Eye className="h-3 w-3" />
+                        {video.views}
+                      </span>
+                      <span className="flex items-center gap-1 text-green-600">
+                        <DollarSign className="h-3 w-3" />
+                        {video.earnings}
+                      </span>
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      <TrendingUp className="h-3 w-3 inline mr-1" />
+                      {video.engagementRate}
+                    </div>
+                  </div>
                 </div>
               ))}
             </CardContent>
