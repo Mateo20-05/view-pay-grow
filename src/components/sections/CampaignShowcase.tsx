@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import { 
   Gamepad2, 
   GraduationCap, 
@@ -140,8 +141,8 @@ export function CampaignShowcase() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-2xl font-bold">Trending Campaigns</h3>
-            <Button variant="outline" className="hover-lift">
-              View All Campaigns
+            <Button asChild variant="outline" className="hover-lift">
+              <Link to="/explore-campaigns">View All Campaigns</Link>
             </Button>
           </div>
 

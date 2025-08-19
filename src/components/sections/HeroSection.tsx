@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Play, TrendingUp, DollarSign, Users, ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 export function HeroSection() {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
@@ -48,9 +49,11 @@ export function HeroSection() {
             Start a Campaign
             <ArrowRight className="h-5 w-5 ml-2" />
           </Button>
-          <Button size="lg" variant="outline" className="glass border-white/30 text-white hover:bg-white/10 text-lg px-8 py-6 rounded-xl hover-lift font-semibold">
-            <Play className="h-5 w-5 mr-2" />
-            Explore Campaigns
+          <Button asChild size="lg" variant="outline" className="glass border-white/30 text-white hover:bg-white/10 text-lg px-8 py-6 rounded-xl hover-lift font-semibold">
+            <Link to="/explore-campaigns">
+              <Play className="h-5 w-5 mr-2" />
+              Explore Campaigns
+            </Link>
           </Button>
         </div>
 
