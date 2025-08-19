@@ -31,7 +31,8 @@ export function HeroSection() {
         <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold text-white mb-6 leading-tight">
           Launch campaigns.
           <br />
-          <span className="text-gradient bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-yellow-200 via-pink-200 to-purple-300 bg-clip-text text-transparent font-extrabold"
+                style={{ textShadow: '0 0 30px rgba(255,255,255,0.5)' }}>
             Earn per view.
           </span>
           <br />
