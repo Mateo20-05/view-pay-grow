@@ -232,39 +232,46 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
                 View All <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </CardHeader>
-            <CardContent className="space-y-4">
-              {recentVideos.map((video) => (
-                <div key={video.id} className="flex items-center gap-4 p-3 rounded-lg border hover-lift cursor-pointer">
-                  <img
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="w-16 h-12 rounded object-cover"
-                  />
-                  
-                  <div className="flex-1 space-y-1">
-                    <h4 className="font-medium text-sm">{video.title}</h4>
-                    <p className="text-xs text-muted-foreground">{video.campaign}</p>
-                    <p className="text-xs text-muted-foreground">{video.uploadDate}</p>
+            <CardContent>
+              <div className="grid grid-cols-3 gap-4">
+                {recentVideos.map((video) => (
+                  <div key={video.id} className="group cursor-pointer">
+                    <Card className="hover-lift transition-all">
+                      <div className="aspect-video relative overflow-hidden rounded-t-lg">
+                        <img
+                          src={video.thumbnail}
+                          alt={video.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                      </div>
+                      <CardContent className="p-4 space-y-2">
+                        <h4 className="font-medium text-sm line-clamp-2">{video.title}</h4>
+                        <p className="text-xs text-muted-foreground">{video.campaign}</p>
+                        <p className="text-xs text-muted-foreground">{video.uploadDate}</p>
+                        
+                        {/* Quick Analytics */}
+                        <div className="space-y-2 pt-2 border-t border-border/50">
+                          <div className="flex justify-between items-center">
+                            <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                              <Eye className="h-3 w-3" />
+                              {video.views}
+                            </span>
+                            <span className="flex items-center gap-1 text-xs text-green-600 font-medium">
+                              <DollarSign className="h-3 w-3" />
+                              {video.earnings}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-center text-xs text-muted-foreground">
+                            <TrendingUp className="h-3 w-3 mr-1" />
+                            {video.engagementRate} engagement
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
-                  
-                  <div className="text-right space-y-1">
-                    <div className="flex items-center gap-3 text-xs">
-                      <span className="flex items-center gap-1">
-                        <Eye className="h-3 w-3" />
-                        {video.views}
-                      </span>
-                      <span className="flex items-center gap-1 text-green-600">
-                        <DollarSign className="h-3 w-3" />
-                        {video.earnings}
-                      </span>
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      <TrendingUp className="h-3 w-3 inline mr-1" />
-                      {video.engagementRate}
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>
