@@ -66,7 +66,7 @@ export function CampaignFilters({
                 <SelectValue placeholder="All Categories" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Categories</SelectItem>
+                <SelectItem value="all">All Categories</SelectItem>
                 <SelectItem value="gaming">Gaming</SelectItem>
                 <SelectItem value="tech">Tech</SelectItem>
                 <SelectItem value="fitness">Fitness</SelectItem>
@@ -109,7 +109,7 @@ export function CampaignFilters({
                 <SelectValue placeholder="Any deadline" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Any deadline</SelectItem>
+                <SelectItem value="any">Any deadline</SelectItem>
                 <SelectItem value="7-days">Ending in 7 days</SelectItem>
                 <SelectItem value="30-days">Ending in 30 days</SelectItem>
                 <SelectItem value="ongoing">Ongoing</SelectItem>
@@ -127,7 +127,7 @@ export function CampaignFilters({
                 <SelectValue placeholder="Any progress" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Any progress</SelectItem>
+                <SelectItem value="any">Any progress</SelectItem>
                 <SelectItem value="fresh">Fresh (0-25%)</SelectItem>
                 <SelectItem value="mid">Mid-progress (25-75%)</SelectItem>
                 <SelectItem value="almost-full">Almost Full (75%+)</SelectItem>
@@ -145,7 +145,7 @@ export function CampaignFilters({
                 <SelectValue placeholder="All platforms" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All platforms</SelectItem>
+                <SelectItem value="all">All platforms</SelectItem>
                 <SelectItem value="youtube">YouTube</SelectItem>
                 <SelectItem value="tiktok">TikTok</SelectItem>
                 <SelectItem value="instagram">Instagram</SelectItem>

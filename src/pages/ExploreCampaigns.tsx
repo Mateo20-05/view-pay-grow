@@ -28,11 +28,11 @@ export interface Campaign {
 const ExploreCampaigns = () => {
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
   const [filters, setFilters] = useState({
-    niche: "",
+    niche: "all",
     payoutRange: [0, 100],
-    deadline: "",
-    budgetProgress: "",
-    platform: "",
+    deadline: "any",
+    budgetProgress: "any",
+    platform: "all",
     minFollowers: 0,
     verifiedOnly: false,
   });
