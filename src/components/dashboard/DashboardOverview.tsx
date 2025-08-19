@@ -197,7 +197,7 @@ export function DashboardOverview({
           </Card>
 
           {/* Recent Videos Section */}
-          <Card className="h-fit">
+          <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>Recent Videos</CardTitle>
               <Button variant="ghost" size="sm" onClick={() => onNavigate("myvideos")} className="text-primary hover:text-primary">
@@ -205,38 +205,38 @@ export function DashboardOverview({
               </Button>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-3 gap-4">
-                {recentVideos.map(video => (
-                  <div key={video.id} className="group cursor-pointer">
-                    <div className="relative aspect-[9/16] overflow-hidden rounded-lg">
-                      <img 
-                        src={video.thumbnail} 
-                        alt={video.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-                      
-                      {/* Overlapping Analytics */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-3">
-                        <h4 className="font-medium text-sm text-white line-clamp-1 mb-2">{video.title}</h4>
-                        <div className="grid grid-cols-2 gap-2 text-xs">
-                          <div className="flex items-center gap-1">
-                            <DollarSign className="h-3 w-3 text-green-400" />
-                            <span className="font-medium text-white">{video.earnings}</span>
+              <div className="grid grid-cols-4 gap-3">
+                {recentVideos.map(video => <div key={video.id} className="group cursor-pointer">
+                    <Card className="hover-lift transition-all">
+                      <div className="aspect-[9/16] relative overflow-hidden rounded-t-lg">
+                        <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                      </div>
+                      <CardContent className="p-4 space-y-2">
+                        <h4 className="font-medium text-sm line-clamp-2">{video.title}</h4>
+                        <p className="text-xs text-muted-foreground">{video.campaign}</p>
+                        <p className="text-xs text-muted-foreground">{video.uploadDate}</p>
+                        
+                        {/* Quick Analytics */}
+                        <div className="space-y-2 pt-2 border-t border-border/50">
+                          <div className="flex justify-between items-center">
+                            <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                              <Eye className="h-3 w-3" />
+                              {video.views}
+                            </span>
+                            <span className="flex items-center gap-1 text-xs text-green-600 font-medium">
+                              <DollarSign className="h-3 w-3" />
+                              {video.earnings}
+                            </span>
                           </div>
-                          <div className="flex items-center gap-1">
-                            <Eye className="h-3 w-3 text-blue-400" />
-                            <span className="text-white">{video.views}</span>
-                          </div>
-                          <div className="flex items-center gap-1 col-span-2">
-                            <TrendingUp className="h-3 w-3 text-purple-400" />
-                            <span className="text-white">{video.engagementRate} engagement</span>
+                          <div className="flex items-center justify-center text-xs text-muted-foreground">
+                            <TrendingUp className="h-3 w-3 mr-1" />
+                            {video.engagementRate} engagement
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                      </CardContent>
+                    </Card>
+                  </div>)}
               </div>
             </CardContent>
           </Card>
