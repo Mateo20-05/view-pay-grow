@@ -37,7 +37,7 @@ export function DashboardHeader({ currentView, onViewChange }: DashboardHeaderPr
   const navItems = [
     { id: "overview", label: "Overview", icon: BarChart3 },
     { id: "campaigns", label: "Campaigns", icon: Play },
-    { id: "proposals", label: "Proposals", icon: FileText },
+    { id: "videos", label: "My Videos", icon: FileText },
     { id: "earnings", label: "Wallet", icon: Wallet },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
     { id: "portfolio", label: "Portfolio", icon: FolderOpen },

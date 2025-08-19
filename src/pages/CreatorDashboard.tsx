@@ -2,13 +2,13 @@ import { useState } from "react";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardOverview } from "@/components/dashboard/DashboardOverview";
 import { CampaignsPage } from "@/components/dashboard/CampaignsPage";
-import { ProposalsPage } from "@/components/dashboard/ProposalsPage";
+import { MyVideosPage } from "@/components/dashboard/MyVideosPage";
 import { EarningsPage } from "@/components/dashboard/EarningsPage";
 import { AnalyticsPage } from "@/components/dashboard/AnalyticsPage";
 import { PortfolioPage } from "@/components/dashboard/PortfolioPage";
 import { MessagesPage } from "@/components/dashboard/MessagesPage";
 
-type DashboardView = "overview" | "campaigns" | "proposals" | "earnings" | "analytics" | "portfolio" | "messages";
+type DashboardView = "overview" | "campaigns" | "videos" | "earnings" | "analytics" | "portfolio" | "messages";
 
 const CreatorDashboard = () => {
   const [currentView, setCurrentView] = useState<DashboardView>("overview");
@@ -17,8 +17,8 @@ const CreatorDashboard = () => {
     switch (currentView) {
       case "campaigns":
         return <CampaignsPage />;
-      case "proposals":
-        return <ProposalsPage />;
+      case "videos":
+        return <MyVideosPage />;
       case "earnings":
         return <EarningsPage />;
       case "analytics":
