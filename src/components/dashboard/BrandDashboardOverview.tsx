@@ -24,13 +24,12 @@ import {
   Edit
 } from "lucide-react";
 
-// Mock data
+// Mock data - Single campaign focused
 const kpiData = [
-  { title: "Active Campaigns", value: "8", change: "+2", icon: Play, color: "text-green-600" },
-  { title: "Total Views Delivered", value: "2.4M", change: "+15%", icon: Eye, color: "text-blue-600" },
-  { title: "Total Spent (This Month)", value: "$12,450", change: "+8%", icon: DollarSign, color: "text-purple-600" },
-  { title: "Pending Proposals", value: "23", change: "+5", icon: Mail, color: "text-orange-600" },
-  { title: "ROI Snapshot", value: "3.2x", change: "+0.4x", icon: TrendingUp, color: "text-emerald-600" },
+  { title: "Total Views Delivered", value: "1.2M", change: "+15%", icon: Eye, color: "text-blue-600" },
+  { title: "Total Spent", value: "$3,200", change: "+8%", icon: DollarSign, color: "text-purple-600" },
+  { title: "Cost Per View", value: "$0.0027", change: "-12%", icon: TrendingUp, color: "text-green-600" },
+  { title: "Engagement Rate", value: "4.8%", change: "+0.3%", icon: TrendingUp, color: "text-emerald-600" },
 ];
 
 const activeCampaigns = [
@@ -123,20 +122,58 @@ export function BrandDashboardOverview() {
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Campaign Overview</h1>
-          <p className="text-muted-foreground">Monitor your campaigns and manage creator partnerships</p>
-        </div>
-        <Button size="lg" className="gap-2">
-          <Plus className="h-4 w-4" />
-          Create New Campaign
-        </Button>
-      </div>
+      {/* Campaign Header Block */}
+      <Card>
+        <CardContent className="p-6">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-4">
+              <img 
+                src="/placeholder.svg" 
+                alt="Campaign"
+                className="w-16 h-16 rounded-lg object-cover"
+              />
+              <div>
+                <h1 className="text-2xl font-bold">Summer Fashion Collection</h1>
+                <Badge className="bg-green-500 text-white mt-1">Active</Badge>
+              </div>
+            </div>
+            <div className="flex space-x-2">
+              <Button variant="outline" size="sm">
+                <Edit className="h-4 w-4 mr-1" />
+                Edit Campaign
+              </Button>
+              <Button variant="outline" size="sm">
+                <Pause className="h-4 w-4 mr-1" />
+                Pause
+              </Button>
+              <Button variant="outline" size="sm">
+                Duplicate
+              </Button>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <p className="text-sm text-muted-foreground">Budget Progress</p>
+              <div className="flex items-center space-x-2 mt-1">
+                <Progress value={64} className="flex-1" />
+                <span className="text-sm font-medium">$3,200 / $5,000</span>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Campaign Duration</p>
+              <p className="font-semibold">15 days remaining</p>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Active Creators</p>
+              <p className="font-semibold">8 creators</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
-      {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      {/* Snapshot KPIs */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {kpiData.map((kpi, index) => (
           <Card key={index} className="hover:shadow-md transition-shadow cursor-pointer">
             <CardContent className="p-6">
@@ -157,180 +194,62 @@ export function BrandDashboardOverview() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Active Campaigns Preview */}
-        <div className="lg:col-span-2">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between">
-              <div>
-                <CardTitle>Active Campaigns</CardTitle>
-                <CardDescription>Your most recent campaign performance</CardDescription>
-              </div>
-              <Button variant="outline" size="sm" className="gap-1">
-                View All <ArrowRight className="h-3 w-3" />
-              </Button>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {activeCampaigns.map((campaign) => (
-                <div key={campaign.id} className="border rounded-lg p-4 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <img 
-                        src={campaign.thumbnail} 
-                        alt={campaign.title}
-                        className="w-12 h-12 rounded-lg object-cover"
-                      />
-                      <div>
-                        <h4 className="font-semibold">{campaign.title}</h4>
-                        <Badge className={`${getStatusColor(campaign.status)} text-white`}>
-                          {campaign.status}
-                        </Badge>
-                      </div>
-                    </div>
-                    <div className="flex space-x-2">
-                      <Button variant="outline" size="sm">
-                        <Edit className="h-3 w-3" />
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        <Pause className="h-3 w-3" />
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-3 gap-4 text-sm">
-                    <div>
-                      <p className="text-muted-foreground">Views Delivered</p>
-                      <p className="font-semibold">{campaign.views}</p>
-                    </div>
-                    <div>
-                      <p className="text-muted-foreground">Budget Progress</p>
-                      <div className="flex items-center space-x-2">
-                        <Progress value={(campaign.spent / campaign.budget) * 100} className="flex-1" />
-                        <span className="text-xs">${campaign.spent}/${campaign.budget}</span>
-                      </div>
-                    </div>
-                    <div>
-                      <p className="text-muted-foreground">ROI</p>
-                      <p className="font-semibold text-green-600">{campaign.roi}</p>
-                    </div>
-                  </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Proposals Preview */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div>
+              <CardTitle className="text-lg">Recent Proposals</CardTitle>
+              <CardDescription>Latest creator submissions</CardDescription>
+            </div>
+            <Button variant="outline" size="sm" className="gap-1">
+              View All <ArrowRight className="h-3 w-3" />
+            </Button>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {recentProposals.map((proposal) => (
+              <div key={proposal.id} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted/50">
+                <img 
+                  src={proposal.avatar} 
+                  alt={proposal.creator}
+                  className="w-8 h-8 rounded-full"
+                />
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-sm">{proposal.creator}</p>
+                  <p className="text-xs text-muted-foreground">{proposal.niche}</p>
+                  <p className="text-xs text-muted-foreground truncate">{proposal.message}</p>
                 </div>
-              ))}
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Right Sidebar */}
-        <div className="space-y-6">
-          {/* Proposals Preview */}
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between">
-              <div>
-                <CardTitle className="text-lg">Recent Proposals</CardTitle>
-                <CardDescription>Latest creator submissions</CardDescription>
-              </div>
-              <Button variant="outline" size="sm" className="gap-1">
-                View All <ArrowRight className="h-3 w-3" />
-              </Button>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {recentProposals.map((proposal) => (
-                <div key={proposal.id} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted/50">
-                  <img 
-                    src={proposal.avatar} 
-                    alt={proposal.creator}
-                    className="w-8 h-8 rounded-full"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <p className="font-medium text-sm">{proposal.creator}</p>
-                    <p className="text-xs text-muted-foreground">{proposal.niche}</p>
-                    <p className="text-xs text-muted-foreground truncate">{proposal.message}</p>
-                  </div>
-                  <div className="flex space-x-1">
-                    <Button size="sm" variant="outline" className="h-6 px-2 text-xs">Accept</Button>
-                    <Button size="sm" variant="ghost" className="h-6 px-2 text-xs">Reject</Button>
-                  </div>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
-
-          {/* Spend & Budget Snapshot */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Spend Overview</CardTitle>
-              <CardDescription>Daily spend this week</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="mb-4">
-                <div className="flex justify-between text-sm mb-2">
-                  <span>Monthly Budget</span>
-                  <span>$15,000</span>
-                </div>
-                <Progress value={83} />
-                <p className="text-xs text-muted-foreground mt-1">$12,450 spent this month</p>
-              </div>
-              
-              <div className="h-32">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={spendData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" fontSize={10} />
-                    <YAxis fontSize={10} />
-                    <Bar dataKey="spent" fill="hsl(var(--primary))" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-              
-              <Button variant="outline" size="sm" className="w-full mt-3">
-                Manage Billing
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Quick Actions */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Quick Actions</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <Button className="w-full justify-start gap-2">
-                <Plus className="h-4 w-4" />
-                Create New Campaign
-              </Button>
-              <Button variant="outline" className="w-full justify-start gap-2">
-                <Users className="h-4 w-4" />
-                Find Creators
-              </Button>
-              <Button variant="outline" className="w-full justify-start gap-2">
-                <FileText className="h-4 w-4" />
-                Review Proposals
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      {/* Notifications Feed */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Recent Activity</CardTitle>
-          <CardDescription>Latest updates from your campaigns</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            {notifications.map((notification) => (
-              <div key={notification.id} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted/50">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <div className="flex-1">
-                  <p className="text-sm">{notification.message}</p>
-                  <p className="text-xs text-muted-foreground">{notification.time}</p>
+                <div className="flex space-x-1">
+                  <Button size="sm" variant="outline" className="h-6 px-2 text-xs">Accept</Button>
+                  <Button size="sm" variant="ghost" className="h-6 px-2 text-xs">Reject</Button>
                 </div>
               </div>
             ))}
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+
+        {/* Notifications Feed */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Recent Activity</CardTitle>
+            <CardDescription>Latest updates from your campaign</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {notifications.map((notification) => (
+                <div key={notification.id} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-muted/50">
+                  <div className="w-2 h-2 bg-primary rounded-full"></div>
+                  <div className="flex-1">
+                    <p className="text-sm">{notification.message}</p>
+                    <p className="text-xs text-muted-foreground">{notification.time}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
     </div>
   );
 }
