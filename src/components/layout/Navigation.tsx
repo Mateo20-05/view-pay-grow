@@ -8,7 +8,9 @@ import {
   User, 
   Briefcase,
   LogIn,
-  ChevronDown
+  ChevronDown,
+  DollarSign,
+  HelpCircle
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -66,12 +68,13 @@ export function Navigation() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <a href="#" className="text-white hover:text-white/80 transition-colors">
-              Pricing
+            <a href="#" className="text-white hover:text-white/80 transition-colors flex items-center space-x-1">
+              <DollarSign className="h-4 w-4" />
+              <span>Pricing</span>
             </a>
             <a 
               href="#how-it-works" 
-              className="text-white hover:text-white/80 transition-colors"
+              className="text-white hover:text-white/80 transition-colors flex items-center space-x-1"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('how-it-works')?.scrollIntoView({ 
@@ -79,7 +82,8 @@ export function Navigation() {
                 });
               }}
             >
-              How it Works
+              <HelpCircle className="h-4 w-4" />
+              <span>How it Works</span>
             </a>
           </div>
 
@@ -124,6 +128,7 @@ export function Navigation() {
               For Brands
             </Button>
             <Button variant="ghost" className="w-full justify-start">
+              <DollarSign className="h-4 w-4 mr-2" />
               Pricing
             </Button>
             <Button 
@@ -136,6 +141,7 @@ export function Navigation() {
                 });
               }}
             >
+              <HelpCircle className="h-4 w-4 mr-2" />
               How it Works
             </Button>
             <div className="flex flex-col space-y-2 pt-4 border-t border-border/50">
