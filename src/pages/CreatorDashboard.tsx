@@ -1,27 +1,44 @@
+import { useState } from "react";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
-import { StatsOverview } from "@/components/dashboard/StatsOverview";
-import { CampaignsSection } from "@/components/dashboard/CampaignsSection";
-import { ProposalsSection } from "@/components/dashboard/ProposalsSection";
-import { EarningsSection } from "@/components/dashboard/EarningsSection";
-import { AnalyticsSection } from "@/components/dashboard/AnalyticsSection";
-import { PortfolioSection } from "@/components/dashboard/PortfolioSection";
-import { MessagesPanel } from "@/components/dashboard/MessagesPanel";
+import { DashboardOverview } from "@/components/dashboard/DashboardOverview";
+import { CampaignsPage } from "@/components/dashboard/CampaignsPage";
+import { ProposalsPage } from "@/components/dashboard/ProposalsPage";
+import { EarningsPage } from "@/components/dashboard/EarningsPage";
+import { AnalyticsPage } from "@/components/dashboard/AnalyticsPage";
+import { PortfolioPage } from "@/components/dashboard/PortfolioPage";
+import { MessagesPage } from "@/components/dashboard/MessagesPage";
+
+type DashboardView = "overview" | "campaigns" | "proposals" | "earnings" | "analytics" | "portfolio" | "messages";
 
 const CreatorDashboard = () => {
+  const [currentView, setCurrentView] = useState<DashboardView>("overview");
+
+  const renderCurrentView = () => {
+    switch (currentView) {
+      case "campaigns":
+        return <CampaignsPage />;
+      case "proposals":
+        return <ProposalsPage />;
+      case "earnings":
+        return <EarningsPage />;
+      case "analytics":
+        return <AnalyticsPage />;
+      case "portfolio":
+        return <PortfolioPage />;
+      case "messages":
+        return <MessagesPage />;
+      default:
+        return <DashboardOverview onNavigate={(view) => setCurrentView(view as DashboardView)} />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      <DashboardHeader />
+      <DashboardHeader currentView={currentView} onViewChange={(view) => setCurrentView(view as DashboardView)} />
       
-      <main className="container mx-auto px-4 py-8 space-y-8">
-        <StatsOverview />
-        <CampaignsSection />
-        <ProposalsSection />
-        <EarningsSection />
-        <AnalyticsSection />
-        <PortfolioSection />
+      <main className="container mx-auto px-4 py-6">
+        {renderCurrentView()}
       </main>
-      
-      <MessagesPanel />
     </div>
   );
 };

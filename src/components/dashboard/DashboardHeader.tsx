@@ -9,7 +9,10 @@ import {
   Moon,
   Sun,
   ChevronDown,
-  Play
+  Play,
+  BarChart3,
+  FileText,
+  FolderOpen
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -20,16 +23,35 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
-export function DashboardHeader() {
+interface DashboardHeaderProps {
+  currentView: string;
+  onViewChange: (view: string) => void;
+}
+
+export function DashboardHeader({ currentView, onViewChange }: DashboardHeaderProps) {
   const [darkMode, setDarkMode] = useState(false);
-  const [notifications] = useState(3); // Mock notification count
+  const [notifications] = useState(3);
+
+  const navItems = [
+    { id: "overview", label: "Overview", icon: BarChart3 },
+    { id: "campaigns", label: "Campaigns", icon: Play },
+    { id: "proposals", label: "Proposals", icon: FileText },
+    { id: "earnings", label: "Wallet", icon: Wallet },
+    { id: "analytics", label: "Analytics", icon: BarChart3 },
+    { id: "portfolio", label: "Portfolio", icon: FolderOpen },
+    { id: "messages", label: "Messages", icon: MessageSquare },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
+        <div 
+          className="flex items-center space-x-2 cursor-pointer"
+          onClick={() => onViewChange("overview")}
+        >
           <div className="p-2 rounded-lg gradient-primary">
             <Play className="h-6 w-6 text-white" />
           </div>
@@ -37,59 +59,21 @@ export function DashboardHeader() {
         </div>
 
         {/* Main Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center space-x-1">
-                <User className="h-4 w-4" />
-                <span>Creator</span>
-                <ChevronDown className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem>Dashboard</DropdownMenuItem>
-              <DropdownMenuItem>Profile Settings</DropdownMenuItem>
-              <DropdownMenuItem>Portfolio</DropdownMenuItem>
-              <DropdownMenuItem>Performance</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center space-x-1">
-                <Play className="h-4 w-4" />
-                <span>Campaigns</span>
-                <ChevronDown className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem>Active Campaigns</DropdownMenuItem>
-              <DropdownMenuItem>Browse Campaigns</DropdownMenuItem>
-              <DropdownMenuItem>Completed</DropdownMenuItem>
-              <DropdownMenuItem>Proposals</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center space-x-1">
-                <Wallet className="h-4 w-4" />
-                <span>Wallet</span>
-                <ChevronDown className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem>Balance</DropdownMenuItem>
-              <DropdownMenuItem>Transaction History</DropdownMenuItem>
-              <DropdownMenuItem>Withdraw Funds</DropdownMenuItem>
-              <DropdownMenuItem>Payment Settings</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Button variant="ghost" className="flex items-center space-x-1">
-            <MessageSquare className="h-4 w-4" />
-            <span>Messages</span>
-          </Button>
+        <nav className="hidden md:flex items-center space-x-1">
+          {navItems.map((item) => (
+            <Button
+              key={item.id}
+              variant={currentView === item.id ? "secondary" : "ghost"}
+              className={cn(
+                "flex items-center space-x-2",
+                currentView === item.id && "bg-secondary text-secondary-foreground"
+              )}
+              onClick={() => onViewChange(item.id)}
+            >
+              <item.icon className="h-4 w-4" />
+              <span>{item.label}</span>
+            </Button>
+          ))}
         </nav>
 
         {/* Right Side Actions */}
