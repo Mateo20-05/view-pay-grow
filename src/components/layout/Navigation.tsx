@@ -46,7 +46,9 @@ export function Navigation() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem>Browse Campaigns</DropdownMenuItem>
-                <DropdownMenuItem>Creator Dashboard</DropdownMenuItem>
+                <DropdownMenuItem>
+                  <a href="/creator-dashboard" className="w-full">Creator Dashboard</a>
+                </DropdownMenuItem>
                 <DropdownMenuItem>Earnings</DropdownMenuItem>
                 <DropdownMenuItem>Portfolio</DropdownMenuItem>
               </DropdownMenuContent>
