@@ -233,7 +233,7 @@ export function DashboardOverview({ onNavigate }: DashboardOverviewProps) {
               </Button>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-4 gap-3">
                 {recentVideos.map((video) => (
                   <div key={video.id} className="group cursor-pointer">
                     <Card className="hover-lift transition-all">
