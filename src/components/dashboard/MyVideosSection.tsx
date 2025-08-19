@@ -171,15 +171,15 @@ export function MyVideosSection() {
         {filteredVideos.map((video) => (
           <Dialog key={video.id}>
             <DialogTrigger asChild>
-              <Card className="group cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg">
+              <Card className="group cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg overflow-hidden">
                 <CardContent className="p-0">
                   <div className="relative aspect-[9/16]">
                     <img
                       src={video.thumbnail}
                       alt={video.title}
-                      className="w-full h-full object-cover rounded-t-lg"
+                      className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors rounded-t-lg flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                       <Play className="h-12 w-12 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <Badge 
@@ -187,33 +187,36 @@ export function MyVideosSection() {
                     >
                       {video.status}
                     </Badge>
-                  </div>
-                  <div className="p-4 space-y-3">
-                    <div>
-                      <h3 className="font-semibold text-sm line-clamp-2">{video.title}</h3>
-                      <p className="text-xs text-muted-foreground">{video.campaign}</p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div className="flex items-center gap-1">
-                        <DollarSign className="h-3 w-3 text-green-500" />
-                        <span className="font-medium">${video.earnings.toLocaleString()}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Eye className="h-3 w-3 text-blue-500" />
-                        <span>{video.views.toLocaleString()}</span>
-                      </div>
-                      {video.engagementRate > 0 && (
-                        <>
+                    {/* Overlapping Analytics */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-3">
+                      <div className="space-y-2">
+                        <div>
+                          <h3 className="font-semibold text-sm text-white line-clamp-1">{video.title}</h3>
+                          <p className="text-xs text-gray-300">{video.campaign}</p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-xs">
                           <div className="flex items-center gap-1">
-                            <TrendingUp className="h-3 w-3 text-purple-500" />
-                            <span>{video.engagementRate}%</span>
+                            <DollarSign className="h-3 w-3 text-green-400" />
+                            <span className="font-medium text-white">${video.earnings.toLocaleString()}</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3 text-gray-500" />
-                            <span>{new Date(video.uploadDate).toLocaleDateString()}</span>
+                            <Eye className="h-3 w-3 text-blue-400" />
+                            <span className="text-white">{video.views.toLocaleString()}</span>
                           </div>
-                        </>
-                      )}
+                          {video.engagementRate > 0 && (
+                            <>
+                              <div className="flex items-center gap-1">
+                                <TrendingUp className="h-3 w-3 text-purple-400" />
+                                <span className="text-white">{video.engagementRate}%</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <Calendar className="h-3 w-3 text-gray-400" />
+                                <span className="text-white">{new Date(video.uploadDate).toLocaleDateString()}</span>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
