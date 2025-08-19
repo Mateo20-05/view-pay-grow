@@ -40,7 +40,7 @@ const creatorSteps = [
 const brandSteps = [
   {
     icon: UserPlus,
-    title: "Create Campaign",
+    title: "Create A Campaign",
     description: "Set your budget, per-view rate, and campaign goals",
     detail: "Define target audience, niche, and content requirements"
   },
