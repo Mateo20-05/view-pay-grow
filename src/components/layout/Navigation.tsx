@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { 
   Play, 
   TrendingUp, 
@@ -45,9 +46,11 @@ export function Navigation() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuItem>Browse Campaigns</DropdownMenuItem>
                 <DropdownMenuItem>
-                  <a href="/creator-dashboard" className="w-full">Creator Dashboard</a>
+                  <Link to="/explore-campaigns" className="w-full">Browse Campaigns</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link to="/creator-dashboard" className="w-full">Creator Dashboard</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>Earnings</DropdownMenuItem>
                 <DropdownMenuItem>Portfolio</DropdownMenuItem>
