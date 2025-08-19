@@ -69,7 +69,16 @@ export function Navigation() {
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               Pricing
             </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a 
+              href="#how-it-works" 
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('how-it-works')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}
+            >
               How it Works
             </a>
           </div>
@@ -117,7 +126,16 @@ export function Navigation() {
             <Button variant="ghost" className="w-full justify-start">
               Pricing
             </Button>
-            <Button variant="ghost" className="w-full justify-start">
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                document.getElementById('how-it-works')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}
+            >
               How it Works
             </Button>
             <div className="flex flex-col space-y-2 pt-4 border-t border-border/50">
