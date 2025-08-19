@@ -36,7 +36,7 @@ export function Navigation() {
           <div className="hidden md:flex items-center space-x-8">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center space-x-1">
+                <Button variant="ghost" className="flex items-center space-x-1 text-white hover:text-white">
                   <User className="h-4 w-4" />
                   <span>For Creators</span>
                   <ChevronDown className="h-4 w-4" />
@@ -52,7 +52,7 @@ export function Navigation() {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center space-x-1">
+                <Button variant="ghost" className="flex items-center space-x-1 text-white hover:text-white">
                   <Briefcase className="h-4 w-4" />
                   <span>For Brands</span>
                   <ChevronDown className="h-4 w-4" />
@@ -66,12 +66,12 @@ export function Navigation() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a href="#" className="text-white hover:text-white/80 transition-colors">
               Pricing
             </a>
             <a 
               href="#how-it-works" 
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-white hover:text-white/80 transition-colors"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('how-it-works')?.scrollIntoView({ 
