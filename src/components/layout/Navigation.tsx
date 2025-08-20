@@ -68,7 +68,9 @@ export function Navigation() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuItem>Start Campaign</DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link to="/create-campaign" className="w-full">Start Campaign</Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem>
                   <a href="/brand-dashboard" className="w-full">Campaign Dashboard</a>
                 </DropdownMenuItem>

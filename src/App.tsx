@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import CreatorDashboard from "./pages/CreatorDashboard";
 import BrandDashboard from "./pages/BrandDashboard";
 import ExploreCampaigns from "./pages/ExploreCampaigns";
+import CreateCampaign from "./pages/CreateCampaign";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/creator-dashboard" element={<CreatorDashboard />} />
           <Route path="/brand-dashboard" element={<BrandDashboard />} />
           <Route path="/explore-campaigns" element={<ExploreCampaigns />} />
+          <Route path="/create-campaign" element={<CreateCampaign />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
