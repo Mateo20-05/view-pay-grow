@@ -100,9 +100,11 @@ export function Navigation() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="flex items-center space-x-2">
-              <LogIn className="h-4 w-4" />
-              <span>Sign In</span>
+            <Button asChild variant="ghost" size="sm" className="flex items-center space-x-2">
+              <Link to="/sign-in">
+                <LogIn className="h-4 w-4" />
+                <span>Sign In</span>
+              </Link>
             </Button>
             <Button size="sm" className="gradient-primary hover:opacity-90 transition-opacity">
               Get Started
