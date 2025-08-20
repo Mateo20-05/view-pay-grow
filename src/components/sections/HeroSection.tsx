@@ -44,10 +44,12 @@ export function HeroSection() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-          <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6 rounded-xl hover-lift font-semibold">
-            <TrendingUp className="h-5 w-5 mr-2" />
-            Start a Campaign
-            <ArrowRight className="h-5 w-5 ml-2" />
+          <Button asChild size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6 rounded-xl hover-lift font-semibold">
+            <Link to="/create-campaign">
+              <TrendingUp className="h-5 w-5 mr-2" />
+              Start a Campaign
+              <ArrowRight className="h-5 w-5 ml-2" />
+            </Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="glass border-white/30 text-white hover:bg-white/10 text-lg px-8 py-6 rounded-xl hover-lift font-semibold">
             <Link to="/explore-campaigns">
