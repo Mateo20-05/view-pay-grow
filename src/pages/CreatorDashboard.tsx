@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardOverview } from "@/components/dashboard/DashboardOverview";
 import { CampaignsPage } from "@/components/dashboard/CampaignsPage";
@@ -11,7 +12,16 @@ import { MessagesPage } from "@/components/dashboard/MessagesPage";
 type DashboardView = "overview" | "campaigns" | "videos" | "earnings" | "analytics" | "portfolio" | "messages";
 
 const CreatorDashboard = () => {
+  const location = useLocation();
   const [currentView, setCurrentView] = useState<DashboardView>("overview");
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const view = searchParams.get('view') as DashboardView;
+    if (view && ["overview", "campaigns", "videos", "earnings", "analytics", "portfolio", "messages"].includes(view)) {
+      setCurrentView(view);
+    }
+  }, [location.search]);
 
   const renderCurrentView = () => {
     switch (currentView) {

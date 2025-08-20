@@ -53,7 +53,9 @@ export function Navigation() {
                   <Link to="/creator-dashboard" className="w-full">Creator Dashboard</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>Earnings</DropdownMenuItem>
-                <DropdownMenuItem>Portfolio</DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link to="/creator-dashboard?view=portfolio" className="w-full">Portfolio</Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
